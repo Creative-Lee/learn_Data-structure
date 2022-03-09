@@ -1,0 +1,23 @@
+{
+  "name": "learn_data-structure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Creative-Lee/learn_Data-structure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Creative-Lee/learn_Data-structure/issues"
+  },
+  "homepage": "https://github.com/Creative-Lee/learn_Data-structure#readme",
+  "dependencies": {
+    "parcel": "^2.3.2"
+  }
+}

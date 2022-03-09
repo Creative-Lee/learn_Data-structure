@@ -1,0 +1,131 @@
+목표
+-  ArrayList와 LinkedList의 차이점을 알고 구현할 수 있다.
+
+배울것
+- 주소의 개념
+- Call by Value, Reference, Sharing
+- Array와 List의 차이점
+- ArrayList와 LinkedList 구현
+
+
+고급언어: 사람에게 친화적인 언어 (Java, JS, Python)
+저급언어: 기계한테 친화적인 언어 (C언어, assembly)
+
+
+변수란?
+- 값을 저장할 공간
+
+let a = 3
+a라는 공간에 3을 할당
+
+a의 주소: 0x100
+0x100이 갖고 있는 값: 3
+
+let a = 3
+let b = 4
+
+console.log(0x99 + 0x11)
+
+let 0x100 = 5
+
+객체지향: 추상화를 통해 속성, 행위를 정의한다.
+절차지향: 코드가 위에서 아래로 호출되는데, 중복을 함수로 제거할 수 있다.
+
+
+int a = 3 (0x100)
+
+함수(0x100)
+
+0x100 = 4
+
+0x100 -> 4
+a -> 4
+
+int a = 3 (0x100)
+함수(param (0x106)) {
+0x106 = 4
+}
+
+a(0x100) -> 3
+
+array: 연속된 주소에 값을 할당
+list: array의 확장버전
+
+b = 4 ( 0x10A)
+
+0x100 -> 4
+0x104 -> 6
+0x108 -> 7
+0x10C -> 4
+
+0x200 ~ 0x210
+0x300 ~ 0x314
+
+
+[4,6,7,4]
+
+
+100, 104, 108, 10c
+
+100 (다음은 200)
+200 (다음은 300)
+300 (다음은 304)
+304 (다음은 408)
+408 (다음은 없다.)
+
+Node: 값과, 다음 노드의 주소
+
+ArrayList   : 크기가 부족하면 새 배열을 만드는 방식으로 가변 리스트를 만든다.
+LinkedList : 불규칙적인 노드의 연속으로 가변 리스트를 만든다.
+
+
+ArrayList
+값 추가: 맨 뒤가 아닌 곳에 추가하면 값을 뒤로 다 민다.
+배열이 꽉 찬 경우: 더 큰 새 배열로 복사하고 추가한다.
+값 삭제: 맨 뒤가 아닌 곳이 삭제되면 값을 앞으로 다 땡겨온다.
+
+LinkedList
+값 처음에 추가: 노드를 생성하고 해당 노드의 다음 노드가 기존의 첫 노드가 됨
+값 중간에 추가: 노드의 다음 부분을 새 노드로 넣고 기존의 다음 부분이 새 노드의 다음 노드가 됨
+값 마지막에 추가: 노드의 마지막 다음 부분을 새 노드로 함
+값 중간에 삭제: 삭제할 노드의 다음 노드주소를 이전 노드에게 전달한다.
+
+
+ArrayList는 새 배열을 만들기 때문에 LinkedList가 삽입에 더 유리하다.
+LinkedList는 노드를 잇기만 하면 가변배열이 만들어지기 때문에 더 유리하다.
+
+삽입/삭제의 경우 LinkedList는 해당 노드의 연산만 수행하면 되는 반면에
+ArrayList는 그외의 노드가 이동하는 연산이 수행될 수 있음
+
+LinkedList는 빈 공간을 안만들기 때문에 ArrayList에 비해 메모리 관리에서 유리하다.
+
+
+삽입 시간복잡도
+ArrayList   : O(n)
+LinkedList : O(1)
+
+삭제 시간복잡도
+ArrayList   : O(n)
+LinkedList : O(1)
+
+탐색 시간복잡도
+ArrayList   : O(1)
+LinkedList : O(n)
+
+
+
+실습1
+ArrayList 구현하기
+
+구현할 함수
+add(value) : 맨 뒤에 추가
+addAt(value, index) : 해당 Index에 추가
+remove(value) : 앞에서부터 제일 빨리만난 해당 값 삭제
+removeAt(index) : 해당 Index값 삭제
+get(index) : 해당 Index 값 반환
+getSize() : 해당 ArrayList의 값이 몇개 들어있는지 반환
+isEmpty() : 해당 ArrayList에 값이 없는지 true/false 반환
+increase() : 내부적으로 배열 키우기
+
+
+ㅎㅇㅌ~~ 야미야미~

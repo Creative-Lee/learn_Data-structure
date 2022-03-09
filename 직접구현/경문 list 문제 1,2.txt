@@ -1,0 +1,52 @@
+실습1
+ArrayList 구현하기
+
+구현할 함수
+add(value) : 맨 뒤에 추가
+addAt(value, index) : 해당 Index에 추가
+remove(value) : 앞에서부터 제일 빨리 만난 해당 값 삭제
+removeAt(index) : 해당 Index값 삭제
+get(index) : 해당 Index 값 반환
+getSize() : 해당 ArrayList의 값이 몇개 들어있는지 반환
+isEmpty() : 해당 ArrayList에 값이 없는지 true/false 반환
+increase() : 내부적으로 배열 키우기
+
+실습2
+linked List 구현하기
+
+----------구현할 함수--------
+
+add(value) : 맨 뒤에 노드 추가
+성공★
+
+addAt(value, index) : 해당 Index에 노드 추가 
+경우1 : index가 size보다 크거나 같을 때 ( 맨뒤에 추가 == add() 랑 같다 )
+경우2 : index가 0 일때 ( 맨 앞에 추가)
+경우3 : index가 size보다 작으면서 0보다 클때 ( 중간에 추가 )
+성공★
+
+remove(value) : 앞에서부터 제일 빨리 만난 해당 value를 가진 노드 삭제
+-> index를 구해 removeAt(index) 호출
+경우1 : 맨 앞 노드를 삭제한 경우
+경우2 : 중간 노드를 삭제한 경우
+경우3 : 맨 뒤 노드를 삭제한 경우
+성공★
+
+removeAt(index) : 해당 Index에 위치한 노드 삭제
+경우1 : 맨 앞 노드를 삭제한 경우
+경우2 : 중간 노드를 삭제한 경우
+경우3 : 맨 뒤 노드를 삭제한 경우
+성공★
+
+
+get(index) : index에 해당하는 노드 리턴
+성공★
+
+getSize() : 해당 linkedLIst의 노드 수 리턴 ( 그냥 size변수 리턴 하지 말기 )
+성공★
+
+isEmpty() : 해당 linkedList에 노드 유무 true/false 반환
+
+
+showAllNode() : 모든 노드 출력
+성공★
