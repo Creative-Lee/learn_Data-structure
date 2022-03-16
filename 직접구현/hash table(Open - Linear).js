@@ -11,7 +11,8 @@ class HashTable{
   }  
 
   add(key, value){
-    if(!this.table.includes(undefined)){
+    if(!this.table.includes(undefined)){ // table의 모든 key-value arr를 순회함 --> hash table의 의미가 없다. 
+                                        // remove 이후 delete된 빈공간이 있어도 꽉찼다고 인지할 것임 --> 'deleted'도 포함됐는지 확인해야함
       console.log("table이 꽉 찼습니다.")
       return
     }
@@ -42,8 +43,8 @@ class HashTable{
     } 
 
     console.log(`제거 성공`)
-    this.table.splice(index,1,'deleted')
-      
+    this.table.splice(index,1,'deleted') // undefined 로 할당하면 상단 find 메소드를 돌릴 수 없음 
+                                         // --> 이 또한 빈공간을 빈공간으로 두지 못하고 'deleted'로 할당하는 것은 메모리적 손해임
     return true 
   }
 
