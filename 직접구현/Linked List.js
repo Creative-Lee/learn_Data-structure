@@ -111,8 +111,8 @@ class LinkedList{
       return this.removeLast();
     }
 
-    const removedNode = this.get(index);
     const beforeNode = this.get(index - 1);
+    const removedNode = beforeNode.next
 
     beforeNode.next = removedNode.next;
     removedNode.next = null;

@@ -30,45 +30,7 @@ class LinkedList{
     }
 
     this.size++;
-  }  
-
-  add(value){
-    const newNode = new Node(value);
-    if(this.isEmpty()){
-      this.head = newNode;
-      this.tail = newNode;
-    }
-    else{
-      this.tail.next = newNode;
-      this.tail = newNode;
-    }
-
-    this.size++;
-  }
-
-  addAt(value,index){
-    const lastIndex = this.size;
-
-    if(index < 0 || index > lastIndex){
-      console.log(`index의 범위는 0~${lastIndex} 입니다.`)
-      return
-    }
-
-    if(index === 0){
-      this.addFirst(value);
-      return
-    }
-    if(index === lastIndex){
-      this.add(value);
-      return
-    }
-
-    const newNode = new Node(value);  
-    const beforeNode = this.get(index - 1)
-
-    newNode.next = beforeNode.next
-    beforeNode.next = newNode;    
-  }
+  } 
 
   remove(value){
     if(this.isEmpty()){
@@ -80,7 +42,7 @@ class LinkedList{
     let indexOfValue = null;
 
     for(let i = 0; i < this.size; i++){
-      if(currentNode.value == value){
+      if(currentNode.value.key === value){
         indexOfValue = i;
         break;
       }
@@ -89,11 +51,13 @@ class LinkedList{
     }
 
     if(indexOfValue === null){
-      console.log(`${value}를 찾을 수 없습니다.`);
-      return
+      console.log('삭제 실패 : list에 param key와 일치하는 key-value pair가 없습니다.')
+      return false
     }
 
     this.removeAt(indexOfValue);
+    console.log('삭제 성공') 
+    return true
   }
 
   removeAt(index){
@@ -117,8 +81,8 @@ class LinkedList{
       return this.removeLast();
     }
 
-    const removedNode = this.get(index);
     const beforeNode = this.get(index - 1);
+    const removedNode = beforeNode.next
 
     beforeNode.next = removedNode.next;
     removedNode.next = null;
@@ -228,6 +192,7 @@ class HashTable{
     this.maxTableSize = maxTableSize ?? 13
   }  
 
+  /*O(1)*/
   add(key, value){
     const index = getHash(key, this.maxTableSize); 
     const keyValuePair = {key, value} 
@@ -243,38 +208,50 @@ class HashTable{
     }
   }
 
+  /*O(n)*/
   remove(key){
     const index = getHash(key, this.maxTableSize); 
     let targetList = this.table[index]
 
-    if(targetList === undefined){         // key에 해당하는 index에 list가 있는지 확인
-      console.log('삭제 실패 : key 오류')
+    if(targetList === undefined){         
+      console.log('삭제 실패 : key에 해당하는 bucket이 비었습니다.')
       return false;
     }    
 
-    let currentPair = targetList.head.value
-    let indexOfValue = null;
+    const isRemoved = targetList.remove(key)      
 
-    for(let i = 0; i < targetList.size; i++){ // 있다면 해당 list에 param key를 가진 pair가 있는지 확인하고 index 저장
-      if(currentPair.key === key){
-        indexOfValue = i;
-        break;
-      }
-
-      currentPair = currentPair.next;    
-    }
-
-    ㅡㅡㅡㅡ
+    if(targetList.size === 0){
+      delete this.table[index]
+    }  
     
-    // if(targetList.size === 1 && currentPair.key === key){
-    //   console.log('삭제 성공')
-    //   delete this.table[index]
-    //   return           
-    // }   
-    
+    return isRemoved
   }
 
-  print(){
+  /*O(n)*/
+  lookup(key){
+    const index = getHash(key, this.maxTableSize); 
+    let targetList = this.table[index]
+
+    if(targetList === undefined){ 
+      console.log('탐색 실패 : key에 해당하는 bucket이 비었습니다.')
+      return undefined;
+    }  
+
+    let currentNode = targetList.head;
+    
+    for(let i = 0; i < targetList.size; i++){
+      if(currentNode.value.key === key){      
+        return currentNode.value.value
+      }
+
+      currentNode = currentNode.next;
+    }
+
+    console.log('탐색 실패 : list에 param key와 일치하는 key-value pair가 없습니다.')
+    return undefined
+  }
+
+  printTable(){
     console.log(this.table)
   }
 }
@@ -293,9 +270,11 @@ hashTable.add(1001,'10')
 hashTable.add(1010,'11')
 hashTable.add(1011,'12')
 hashTable.add(1100,'13')
+hashTable.remove(111)
+console.log(hashTable.lookup(23))
+console.log(hashTable.lookup(1100))
+
+hashTable.printTable()
 
 
 
-
-
-hashTable.print()
